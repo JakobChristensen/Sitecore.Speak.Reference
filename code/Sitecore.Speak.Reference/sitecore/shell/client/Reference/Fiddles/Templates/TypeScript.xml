@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.SpeakRenderingModel
+@{
+  var content = Html.Sitecore().Placeholder(Model.ControlId + ".Content");
+  if (!Model.IsScriptEnabled && string.IsNullOrEmpty(content.ToString()))
+  {                
+    return;
+  }
+
+  Model.DataBind.IsVisible().IsEnabled().Text().Click();
+}                               
+<button @Model.HtmlAttributes @Html.Sitecore().ClickAttribute("javascript:alert('Hello World')")>@content@Html.Sitecore().Translate("Button")</button>]]>
+  </view>
+  <code language="ts">
+    <![CDATA[import Speak = require("sitecore/shell/client/Speak/Assets/lib/core/1.2/SitecoreSpeak");
+
+class Fiddle extends Speak.ControlBase {
+
+  // #region Public Properties
+  public IsEnabled: boolean;
+  public IsVisible: boolean;
+  public Text: string;
+  public Tooltip: string;
+  // #endregion
+
+  initialized() {
+    this.Text = "Hello";
+    this.IsEnabled = true;
+    this.IsVisible = true;
+  }
+
+  click() {
+    var click = $(this.el).data("sc-click");
+    if (click) {
+      Sitecore.Speak.Events.handleEvent(click, this);
+    }
+  }              
+}
+
+Sitecore.Speak.component(Fiddle);]]></code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle />
+</Layout>
+]]>
+  </renderings>
+  <text />
+</fiddle>

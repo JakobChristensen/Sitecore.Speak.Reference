@@ -1,0 +1,38 @@
+﻿@using Sitecore.Fiddles
+@using Sitecore.Web
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var action = WebUtil.GetQueryString("a");
+  if (Request.Files.Count > 0)
+  {
+    action = "upload";
+  }
+  
+  var componentId = WebUtil.GetQueryString("id");
+  Fiddle fiddle;
+
+  switch (action)
+  {
+    case "use":
+      fiddle = FiddleManager.CreateFiddleUsingComponent(componentId);
+      fiddle.Save();
+      Response.Redirect("/sitecore/client/Reference/Fiddle?f=" + fiddle.FiddleId);
+      break;
+    case "base":
+      fiddle = FiddleManager.CreateFiddleBasedOnComponent(componentId);
+      fiddle.Save();
+      Response.Redirect("/sitecore/client/Reference/Fiddle?f=" + fiddle.FiddleId);
+      break;
+    case "template":
+      fiddle = FiddleManager.CreateFiddleFromTemplate(componentId);
+      fiddle.Save();
+      Response.Redirect("/sitecore/client/Reference/Fiddle?f=" + fiddle.FiddleId);
+      break;
+    case "upload":
+      var file = Request.Files[0];
+      fiddle = FiddleManager.CreateFiddleFromUpload(file);
+      fiddle.Save();
+      Response.Redirect("/sitecore/client/Reference/Fiddle?f=" + fiddle.FiddleId);
+      break;
+  }
+}

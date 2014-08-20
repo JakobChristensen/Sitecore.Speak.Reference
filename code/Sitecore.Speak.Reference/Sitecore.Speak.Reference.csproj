@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D1414D7-7A92-477C-80FC-E97444EF0DFB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore</RootNamespace>
+    <AssemblyName>Sitecore.Speak.Reference</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\Components\Sitecore.Kernel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Components\Sitecore.Mvc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.Speak.Client">
+      <HintPath>..\Components\Sitecore.Speak.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.2\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\XElementExtensions\XElementExtensions.cs" />
+    <Compile Include="Fiddles\Fiddle.cs" />
+    <Compile Include="Fiddles\FiddleManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sitecore\shell\client\Reference\FiddleHelp.ashx.cs">
+      <DependentUpon>FiddleHelp.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Validations\BaseValidation.cs" />
+    <Compile Include="Validations\Rules\DataSourceFields.cs" />
+    <Compile Include="Validations\Rules\MissingComponentHelp.cs" />
+    <Compile Include="Validations\Rules\InvalidDefaultParameter.cs" />
+    <Compile Include="Validations\Rules\MissingDotInControlHelp.cs" />
+    <Compile Include="Validations\Rules\MissingDotInParameterHelp.cs" />
+    <Compile Include="Validations\Rules\MissingParameterHelp.cs" />
+    <Compile Include="Validations\Rules\ParametersTemplate.cs" />
+    <Compile Include="Validations\SeverityLevel.cs" />
+    <Compile Include="Validations\ValidationManager.cs" />
+    <Compile Include="Validations\ValidationAnalyzer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.0.js" />
+    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="sitecore\shell\client\Reference\Assets\TypeAhead\Bootstrap3-TypeAhead.min.js" />
+    <Content Include="sitecore\shell\client\Reference\FiddleHelp.ashx" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\css\bootstrap-theme.css" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\css\bootstrap-theme.min.css" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\css\bootstrap.css" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\css\bootstrap.min.css" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\js\bootstrap.js" />
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\js\bootstrap.min.js" />
+    <Content Include="sitecore\shell\client\Reference\Fiddle.css">
+      <DependentUpon>Fiddle.less</DependentUpon>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Fiddle.min.css">
+      <DependentUpon>Fiddle.css</DependentUpon>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Templates\TypeScript.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Templates\Model and View.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Templates\CreateBaseComponent.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Templates\View with Parameters.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Templates\View.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial1.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial10.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial2.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial3.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial4.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial5.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial6.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial7.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial8.xml" />
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial11.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Fiddles\Tutorial\Tutorial9.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Reference.css">
+      <DependentUpon>Reference.less</DependentUpon>
+    </Content>
+    <Content Include="sitecore\shell\client\Reference\Reference.min.css">
+      <DependentUpon>Reference.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery-2.1.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Assets\Bootstrap3\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Assets\typings\jquery\jquery.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\typings\bootstrap\bootstrap.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\requirejs\require.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\underscore\underscore.d.ts" />
+    <TypeScriptCompile Include="sitecore\shell\client\Reference\ComponentListPageCode.ts" />
+    <TypeScriptCompile Include="sitecore\shell\client\Reference\FiddlePageCode.ts" />
+    <TypeScriptCompile Include="sitecore\shell\client\Speak\Assets\lib\core\1.2\Sitecore.Speak.d.ts" />
+    <TypeScriptCompile Include="sitecore\shell\client\Speak\Assets\lib\core\1.2\SitecoreSpeak.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Fiddle.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Layouts\Fiddle-Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Layouts\FiddleRun-Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\Fiddle.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\FiddleCreate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\FiddleEmpty.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\FiddleError.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\FiddleRun.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\ReferenceComponent.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Layouts\Renderings\ReferenceComponentList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sitecore\shell\client\Reference\Reference.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sitecore\shell\client\Reference\Fiddles\Components\" />
+    <Folder Include="sitecore\shell\client\Reference\Temp\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
+    <TypeScriptModuleKind>amd</TypeScriptModuleKind>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
+</Project>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+  
+  var text = control.GetString("Text");
+  var color = control.GetString("Color");
+  
+  control.SetAttribute("data-sc-text", text);
+  control.SetAttribute("data-sc-color", color);
+}
+<p @control.HtmlAttributes>
+  @text
+</p>]]>
+  </view>
+  <code>
+    <![CDATA[define(["sitecore"], function (Sitecore) {
+  var model = Sitecore.Definitions.Models.ControlModel.extend({
+    initialize: function (options) {
+      this._super();
+      
+      this.set("Text", "");
+      this.set("Color", "");
+    }
+  });
+
+  var view = Sitecore.Definitions.Views.ControlView.extend({
+    initialize: function (options) {
+      this._super();
+      
+      this.model.set("Text", this.$el.data("sc-text"));
+      this.model.set("Color", this.$el.data("sc-color"));
+      
+      this.$el.css("color", this.model.get("Color"));
+    }
+  });
+
+  Sitecore.Factories.createComponent("Tutorial7", model, view, "p[data-sc-component='Tutorial7']");
+});
+
+]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text" Color="red"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Model/View</h3>
+    <p>SPEAK Components consist of a Model and a View.</p>
+    <p>The Model is the public API of the component, while the View handles interaction with the Html DOM.</p>
+    <p>The <code>Sitecore.Factories.createBaseComponent</code> function wraps the Model and View in
+    a simple definition, but it is also possible to create the Model and View explicitly.</p>
+    <p>This is sometimes preferable as it allows more control over the component.</p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial6</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial8</next>
+</fiddle>

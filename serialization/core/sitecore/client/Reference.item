@@ -1,0 +1,63 @@
+----item----
+version: 1
+id: {711E2B6B-F3BA-4F7D-9AA2-C653B180D480}
+database: core
+path: /sitecore/client/Reference
+parent: {31056D46-2FAA-4EA2-8759-BE93EAE10001}
+name: Reference
+master: {00000000-0000-0000-0000-000000000000}
+template: {B11AFCCD-C286-4384-B694-4465D6C605DE}
+templatekey: Speak-DashboardPage
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 355
+
+<r>
+  <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{61AE21EC-DD1C-4585-ABA2-6CB8B0531E70}">
+    <r id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}" par="PageCodeScriptFileName=%2Fsitecore%2Fshell%2Fclient%2FReference%2FComponentListPageCode.js" ph="Page.Code" />
+    <r id="{E503973A-6D7C-4C2D-9783-604EF43BAEDD}" par="" ph="Page.Body" />
+  </d>
+</r>
+----version----
+language: en
+version: 1
+revision: 5e1727bd-78dd-4df7-8690-f95a732e48e8
+
+----field----
+field: {7205A57F-93B4-413A-AA9A-6B16BBC59565}
+name: BrowserTitle
+key: browsertitle
+content-length: 15
+
+SPEAK Reference
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140731T093435
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+5e1727bd-78dd-4df7-8690-f95a732e48e8
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140731T112910:635424029502266045
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

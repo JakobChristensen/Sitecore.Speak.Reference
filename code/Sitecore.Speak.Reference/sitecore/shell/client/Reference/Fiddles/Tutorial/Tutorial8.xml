@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+
+  control.DataBind = "text: Text, style: { color: Color }";
+
+  var text = control.GetString("Text");
+  var color = control.GetString("Color");
+  
+  control.SetAttribute("data-sc-text", text);
+  control.SetAttribute("data-sc-color", color);
+}
+<p @control.HtmlAttributes>
+</p>]]>
+  </view>
+  <code>
+    <![CDATA[define(["sitecore"], function (Sitecore) {
+  var model = Sitecore.Definitions.Models.ControlModel.extend({
+    initialize: function (options) {
+      this._super();
+      
+      this.set("Text", "");
+      this.set("Color", "");
+    }
+  });
+
+  var view = Sitecore.Definitions.Views.ControlView.extend({
+    initialize: function (options) {
+      this._super();
+      
+      this.model.set("Text", this.$el.data("sc-text"));
+      this.model.set("Color", this.$el.data("sc-color"));
+    }
+  });
+
+  Sitecore.Factories.createComponent("Tutorial8", model, view, "p[data-sc-component='Tutorial8']");
+});
+
+]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text" Color="red"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Knockout data-binding</h3>
+    <p>SPEAK supports Knockout based data-binding between the component model and the Html.</p>
+    <p>In this example, you can see that the view does not update the DOM. Instead the MVC View sets
+    the <code>DataBind</code> property. This DataBind property corresponds to the Knockout <code>data-bind</code> attribute.<p>
+    <p>Using Knockout data-binding allows you to set properties in the component model, and have
+    the Html updated automatically.</p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial7</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial9</next>
+</fiddle>

@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {3F1A3981-A8F1-41E9-8B8C-B2F2ED6A68EF}
+database: core
+path: /sitecore/client/Reference/Fiddle/PageSettings/FiddleCss
+parent: {4B6117FA-C77D-445B-B519-94866C687427}
+name: FiddleCss
+master: {00000000-0000-0000-0000-000000000000}
+template: {27C78269-CEF0-483F-9E7A-AF27ED04CE5D}
+templatekey: Page-Stylesheet-File
+
+----field----
+field: {834B2406-24A9-4376-9350-CBE6DA96C51A}
+name: Stylesheet
+key: stylesheet
+content-length: 43
+
+/sitecore/shell/Client/Reference/fiddle.css
+----version----
+language: en
+version: 1
+revision: 969f96ac-7b22-42c5-ae56-0a786fa6cd02
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140730T090036
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+969f96ac-7b22-42c5-ae56-0a786fa6cd02
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140731T102602:635423991623590711
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

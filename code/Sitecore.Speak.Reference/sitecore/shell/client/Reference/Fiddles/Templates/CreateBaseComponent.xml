@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+
+  var text = control.GetString("Text");
+
+  control.SetAttribute("data-sc-text", text);
+}
+<p @control.HtmlAttributes>
+  @text
+</p>]]>
+  </view>
+  <code>
+    <![CDATA[define(["sitecore"], function (Sitecore) {
+  Sitecore.Factories.createBaseComponent({
+    name: "Tutorial5",
+    base: "ControlBase",
+    selector: "p[data-sc-component='Tutorial5']",
+    attributes: [
+      { name: "Text", value: "$el.data:sc-text" }
+    ]
+  });
+});]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text"/>
+</Layout>
+]]>
+  </renderings>
+</fiddle>

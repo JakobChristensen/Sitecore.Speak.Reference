@@ -1,0 +1,20 @@
+﻿@using Sitecore.Fiddles
+@using Sitecore.Web
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var fiddle = FiddleManager.LoadFiddleFromPost();
+  fiddle.TypeScriptCompilerPath = "C:\\Program Files (x86)\\Microsoft SDKs\\TypeScript\\1.0\\tsc.exe";
+
+  var action = WebUtil.GetFormValue("action");
+  switch (action)
+  {
+    case "fork":
+      FiddleManager.Fork(fiddle);
+      Response.Redirect("/sitecore/client/Reference/Fiddle?f=" + fiddle.FiddleId);
+      return;
+    case "save":
+      FiddleManager.Save(fiddle);
+      break;
+  }
+}
+@Html.Raw(fiddle.Render())

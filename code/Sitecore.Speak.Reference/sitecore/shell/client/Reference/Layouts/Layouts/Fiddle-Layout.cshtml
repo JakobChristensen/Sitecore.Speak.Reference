@@ -1,0 +1,17 @@
+﻿@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+<!DOCTYPE html>
+<html data-sc-app>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/sitecore/shell/client/Reference/Assets/bootstrap3/css/bootstrap.min.css" rel="stylesheet" />
+  @Html.Sitecore().Placeholder("Page.Stylesheets")
+  @Html.Sitecore().Placeholder("Page.Scripts")
+  @Html.Sitecore().Placeholder("Page.Code")
+</head>
+<body>
+  @Html.Sitecore().Placeholder("Page.Body")
+</body>
+</html>

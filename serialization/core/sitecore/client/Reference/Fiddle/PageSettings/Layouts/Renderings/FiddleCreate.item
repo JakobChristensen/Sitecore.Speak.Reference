@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {79720069-8222-4B28-81C1-67789B638569}
+database: core
+path: /sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/FiddleCreate
+parent: {78C5734F-EB0D-4C82-B39A-8807B57DC3CD}
+name: FiddleCreate
+master: {00000000-0000-0000-0000-000000000000}
+template: {99F8905D-4A87-4EB8-9F8B-A9BEBFB3ADD6}
+templatekey: View rendering
+
+----field----
+field: {51B435BC-F7B9-478A-9C51-52916AF96FF5}
+name: Path
+key: path
+content-length: 71
+
+/sitecore/shell/client/Reference/Layouts/Renderings/FiddleCreate.cshtml
+----field----
+field: {EF7C5528-7307-4E19-863B-DA19EED6A9ED}
+name: Open Properties after Add
+key: open properties after add
+content-length: 1
+
+-
+----version----
+language: en
+version: 1
+revision: d81704cc-e90f-4db2-8a23-d6c76a3e9d8d
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140801T095543
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d81704cc-e90f-4db2-8a23-d6c76a3e9d8d
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140801T095609:635424837692395775
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

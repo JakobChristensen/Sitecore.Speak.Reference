@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.SpeakRenderingModel
+@{
+  Model.Properties["Text"] = "TypeScript";
+  Model.DataBind = "text: Text";
+}
+<p @Model.HtmlAttributes>
+</p>
+]]>
+  </view>
+  <code language="ts">
+    <![CDATA[import Speak = require("sitecore/shell/client/Speak/Assets/lib/core/1.2/SitecoreSpeak");
+
+class Fiddle extends Speak.ControlBase {
+
+  public Text: string;
+
+  initialized() {
+  }
+}
+
+Sitecore.Speak.component(Fiddle);]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>TypeScript</h3>
+    <p>SPEAK 1.2 supports TypeScript in components and Page Code.</p>
+    <p>In the Component Code you can toggle between JavaScript and TypeScript.</p>
+    <h4>Try this</h4>
+    <p>Try adding <code>this.Text = "Perfect";</code> inside the <code>initialized()</code> 
+    function.
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial9</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial11</next>
+</fiddle>

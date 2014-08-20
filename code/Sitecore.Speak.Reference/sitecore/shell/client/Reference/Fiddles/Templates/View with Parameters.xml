@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+  var text = control.GetString("Text");
+}
+<p @control.HtmlAttributes>
+  @text
+</p>]]>
+  </view>
+  <code><![CDATA[]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text"/>
+</Layout>
+]]>
+  </renderings>
+</fiddle>

@@ -1,0 +1,345 @@
+﻿@using System.Web.Mvc.Html
+@using Sitecore
+@using Sitecore.Collections
+@using Sitecore.Data.Items
+@using Sitecore.IO
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sitecore.StringExtensions
+@using Sitecore.Text
+@using Sitecore.Validations
+@using Sitecore.Web
+@model RenderingModel
+@functions
+{
+  private HtmlString GetExample(Item item)
+  {
+    HtmlString example;
+    using (new ContextItemSwitcher(item))
+    {
+      example = Html.Sitecore().Placeholder("Example");
+    }
+
+    string filename = "/sitecore/shell/client/Business Component Library/Content/Documentation/Examples/{0}.cshtml".FormatWith(item.Name);
+    if (string.IsNullOrEmpty(example.ToString()) && File.Exists(FileUtil.MapPath(filename)))
+    {
+      example = Html.Partial(filename);
+    }
+
+    if (string.IsNullOrEmpty(example.ToString()))
+    {
+      example = new HtmlString("There are no examples available.");
+    }
+
+    return example;
+  }
+}
+@{
+  var itemId = WebUtil.GetQueryString("i", string.Empty);
+
+  var item = ClientHost.Databases.Database.GetItem(itemId);
+  if (item == null)
+  {
+    return;
+  }
+
+  var title = item.DisplayName;
+  var subtitle = item.Help.ToolTip;
+  var text = item.Help.Text.Replace("\r", "<br />");
+
+  if (string.IsNullOrEmpty(subtitle))
+  {
+    subtitle = "[No description.]";
+  }
+  
+  TemplateItem template = null;
+
+  var t = item["Parameters Template"];
+  if (!string.IsNullOrEmpty(t))
+  {
+    var i = ClientHost.Databases.Database.GetItem(t);
+    if (i != null)
+    {
+      template = new TemplateItem(i);
+    }
+  }
+
+  var example = this.GetExample(item);
+  var itemPath = item.Paths.Path;
+  var itemPathLink = "/sitecore/shell/Applications/Content Editor?id=" + item.ID + "&sc_content=master&fo=" + item.ID + "&ic=People/16x16/cubes_blue.png&he=Content Editor&cl=0";
+  var placeHolders = StringUtil.GetString(item["Place Holders"], "The Placeholders field is empty.");
+
+  var pathField = item["Path"];
+  var fileName = string.Empty;
+  var localFileName = string.Empty;
+  if (!string.IsNullOrEmpty(pathField))
+  {
+    localFileName = FileUtil.MapPath(pathField);
+    fileName = "file:///" + FileUtil.NormalizeWebPath(localFileName);
+  }
+
+  var defaultParameters = new UrlString(item["Default Parameters"]);
+  var usages = Globals.LinkDatabase.GetReferrerCount(item);
+  var renderings = Sitecore.Context.Database.SelectItems("fast://*[@@templateid='{99F8905D-4A87-4EB8-9F8B-A9BEBFB3ADD6}']").OrderBy(i => i.Name).ToList();
+  var analyzer = ValidationManager.Check(item);
+
+  var fiddleLinksFolder = FileUtil.MapPath("/sitecore/shell/client/Reference/Fiddles/Components/" + item.Name);
+  var fiddleLinks = Directory.Exists(fiddleLinksFolder) ? Directory.GetFiles(fiddleLinksFolder, "*.xml", SearchOption.AllDirectories).Select(f => "components/" + item.Name + "/" + Path.GetFileName(f)).ToList() : StringList.Empty;
+}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#NavBar1Collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/sitecore/client/Reference">SPEAK Reference</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="NavBar1Collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/sitecore/client/Reference">Components</a></li>
+        <li><a href="/sitecore/client/Reference/Fiddle">Fiddle</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="list">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="page-header">
+          <h1>@title Component</h1>
+        </div>
+        <ul class="nav nav-pills">
+          <li><a href="#Description">Description</a></li>
+          <li><a href="#Properties">Properties</a></li>
+          <li><a href="#Fiddles">Fiddles</a></li>
+          <li><a href="#MvcExamples">MVC Examples</a></li>
+          <li><a href="#Resources">Resources</a></li>
+          <li>
+            <a href="#Resources">
+              Quality
+              @if (analyzer.Messages.Any())
+              {
+                <span class="badge">@analyzer.Messages.Count()</span>
+              }
+            </a>
+          </li>
+        </ul>
+                    
+        <h3><a id="Description"></a>Description</h3>
+        <p>
+          @subtitle
+        </p>    
+        @if (!string.IsNullOrEmpty(text))
+        {
+          <p>
+            @Html.Raw(text)
+          </p>
+        }
+
+        <section>
+          <h3><a id="Properties"></a>Properties</h3>
+          <p>This section displays the fields in the components parameters template.</p>
+          <table class="table table-bordered table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Types
+                </th>
+                <th>
+                  Binding Mode
+                </th>
+                <th>
+                  Default Value
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              @if (template != null)
+              {
+                foreach (var templateSection in template.Fields.GroupBy(f => f.Section.Name).Select(g => new { Name = g.Key, Fields = g.OrderBy(f => f.DisplayName) }).OrderBy(g => g.Name))
+                {
+                  var first = true;
+
+                  foreach (var field in templateSection.Fields.OrderBy(f => f.Name))
+                  {
+                    var templateItem = new TemplateItem(field.InnerItem.Parent.Parent);
+                    if (!templateItem.BaseTemplates.Any())
+                    {
+                      continue;
+                    }
+
+                    var source = new UrlString(field.Source);
+
+                    var bindMode = source["bindMode"];
+                    if (string.IsNullOrEmpty(bindMode))
+                    {
+                      bindMode = "readwrite";
+                    }
+
+                    var values = string.Empty;
+                    if (field.Type == "Droplist")
+                    {
+                      var datasource = source["datasource"];
+                      if (!string.IsNullOrEmpty(datasource))
+                      {
+                        var root = field.InnerItem.Database.GetItem(datasource);
+                        if (root != null)
+                        {
+                          values = "Values: " + string.Join(", ", root.Children.Select(i => "<code>" + i.Name + "</code>"));
+                        }
+                      }
+                    }
+
+                    if (first)
+                    {
+                      <tr class="info">
+                        <td colspan="5">@templateSection.Name</td>
+                      </tr>
+                    }
+
+                    first = false;
+                    var defaultValue = defaultParameters.Parameters[@field.Name] ?? string.Empty;
+                    <tr>
+                      <td>
+                        <code>@field.Name</code>
+                      </td>
+                      <td>
+                        @field.ToolTip
+                        @if (!string.IsNullOrEmpty(field.ToolTip) && !string.IsNullOrEmpty(values))
+                        {
+                          <br />
+                        }
+                        @if (!string.IsNullOrEmpty(values))
+                        {
+                          @Html.Raw(values)
+                        }
+
+                        @if (this.Session["SC_EDIT"] as string == "1")
+                        {
+                          <a href="@itemPathLink"><img src="/sitecore/shell/themes/standard/images/smarttag.png" width="11" height="11" alt="Edit" /></a>
+                        }
+                      </td>
+                      <td>
+                        @field.Type
+                      </td>
+                      <td>
+                        @bindMode
+                      </td>
+                      <td>
+                        @defaultValue
+                      </td>
+                    </tr>
+                  }
+                }
+              }
+            </tbody>
+          </table>
+
+          <h3><a id="Fiddles"></a>Fiddle</h3>
+          <p>This section displays links to Fiddles relating to this component.</p>
+
+          @foreach (var fiddleLink in fiddleLinks)
+          {
+            <p>
+              <a href="/sitecore/client/Reference/Fiddle?f=@fiddleLink">@Path.GetFileNameWithoutExtension(fiddleLink)</a>
+            </p>
+          }
+          <p>
+            <a href="/sitecore/client/Reference/Fiddle/FiddleCreate?a=use&id=@itemId">Create new Fiddle that uses this component</a>
+          </p>
+          <p>
+            <a href="/sitecore/client/Reference/Fiddle/FiddleCreate?a=base&id=@itemId">Create new Fiddle based on this component</a>
+          </p>
+
+          <h3><a id="MvcExamples"></a>MVC Examples</h3>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              @example
+            </div>
+          </div>
+
+          <h3><a id="Resources"></a>Resources</h3>
+          <p>
+            This section displays implementation details related to this control.
+          </p>
+          <dl class="dl-horizontal">
+            <dt>Rendering Item:</dt>
+            <dd><a href="@itemPathLink" target="_blank">@itemPath</a></dd>
+
+            <dt>Rendering Item ID:</dt>
+            <dd>@itemId</dd>
+
+            <dt>Placeholders Field:</dt>
+            <dd>@placeHolders</dd>
+
+            <dt>Path Field:</dt>
+            <dd><a href="@fileName" target="_blank">@pathField</a></dd>
+
+            <dt>File:</dt>
+            <dd><a href="@fileName" target="_blank">@localFileName</a></dd>
+
+            <dt>Component Usage:</dt>
+            <dd>@usages place(s)</dd>
+          </dl>
+
+          <h3><a id="Quality"></a>Component Quality</h3>
+          <p>This section displays the result of a quality analysis of the component.</p>
+          @if (analyzer.Messages.Any())
+          {
+            <div class="list-group">
+              @foreach (var message in analyzer.Messages)
+              {
+                var level = string.Empty;
+                switch (message.Severity)
+                {
+                  case SeverityLevel.Error:
+                    level = "list-group-item-danger";
+                    break;
+                  case SeverityLevel.Warning:
+                    level = "list-group-item-warning";
+                    break;
+                }
+
+                <div class="list-group-item @level">
+                  <h4 class="list-group-item-heading">@message.Title</h4>
+                  <p class="list-group-item-text"><strong>Problem</strong></p>
+                  <p class="list-group-item-text">@message.Problem</p>
+                  <p class="list-group-item-text"><strong>Solution</strong></p>
+                  <p class="list-group-item-text">@message.Solution</p>
+                </div>
+              }
+            </div>
+          }
+          else
+          {
+            <p>This component has been successfully validated.</p>
+          }
+        </section>
+
+      </div>
+      <div class="col-md-2 components-list">
+        <h4>Other Components</h4>
+        <ul class="list-unstyled">
+          @foreach (var rendering in renderings)
+          {
+            <li>
+              <a href="/sitecore/client/Reference/Component?i=@rendering.ID">@rendering.Name</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

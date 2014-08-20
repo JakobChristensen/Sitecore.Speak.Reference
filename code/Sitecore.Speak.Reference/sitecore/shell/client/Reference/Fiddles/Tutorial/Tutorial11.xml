@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@using Sitecore.Data.Items
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+  
+  var dataSource = Model.Item;
+}
+<ul @control.HtmlAttributes>
+  @foreach(Item item in dataSource.Children) {
+  <li>
+    @item.Name
+  </li>
+  }
+</ul>]]>
+  </view>
+  <code>
+    <![CDATA[]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle />
+</Layout>
+]]>
+  </renderings>
+  <items>
+    <![CDATA[<Folder n="DataSource">
+  <Folder n="Item 1" />
+  <Home n="Item 2" Title="Sitecore" Text="Welcome to Sitecore" />
+  <item tname="Large Button" n="Item 3" Header="Save" />
+</Folder>
+]]>
+  </items>
+  <text>
+    <![CDATA[
+    <h3>Items</h3>
+    <p>You can also specify items in the Items pane. The items are temporarily created while the Fiddle
+    renders and are deleted when done.</p>
+    <p>The data source of the Fiddle is set to the outermost item and the data source can reached 
+    through the <code>Model.Item</code> property</p>    
+    <p>Each element in the Items XML corresponds to an item. The XML element name is the name of a 
+    Sitecore template and the <code>n</code> attribute specifies the name of the item. Any other attribute
+    is a field.</p>
+    <p>If the template name is a not a valid XML element name, use <code>item</code> as element name and 
+    specify the template name in the <code>tname</code> or <code>tid</code> attribute.</p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial10</previous>
+</fiddle>

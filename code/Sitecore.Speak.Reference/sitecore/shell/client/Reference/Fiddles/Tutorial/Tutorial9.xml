@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+
+  control.DataBind = "text: text, style: { color: color }";
+
+  var text = control.GetString("text", "text");
+  var color = control.GetString("color", "color");
+  
+  control.SetAttribute("data-sc-text", text);
+  control.SetAttribute("data-sc-color", color);
+}
+<p @control.HtmlAttributes>
+</p>]]>
+  </view>
+  <code>
+    <![CDATA[define(["sitecore"], function (Sitecore) {
+  var model = Sitecore.Definitions.Models.ControlModel.extend({
+    initialize: function (options) {
+      this._super();
+      
+      this.set("text", "");
+      this.set("color", "");
+    }
+  });
+
+  var view = Sitecore.Definitions.Views.ControlView.extend({
+    initialize: function (options) {
+      this._super();
+      
+      this.model.set("text", this.$el.data("sc-text"));
+      this.model.set("color", this.$el.data("sc-color"));
+    }
+  });
+
+  Sitecore.Factories.createComponent("Tutorial9", model, view, "p[data-sc-component='Tutorial9']");
+});
+
+]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <TextBox Id="TextInput" Text="Cross-Binding" />
+  <TextBox Id="ColorInput" Text="Blue" />
+
+  <Fiddle Text="{Binding TextInput.text}" Color="{Binding ColorInput.text}"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Cross-binding</h3>
+    <p>SPEAK Components can bind properties to other properties, so that if the value in one property changes,
+    bound properties also changes.</p>
+    <p>To enable cross-binding, the GetString method in the MVC View needs an additional parameter, that specifies
+    the target property in the component Model. Usually this is the same name as the property name. If this
+    parameter is not specified, the property will not be data-bound.</p>
+    <p>In this example the Text and Color properies of the Fiddle is data-bound to the input boxes.</p>
+    <h4>Try this</h4>
+    <p>Change the Color input box to "Red" and the color of the Fiddle updates.</p>
+    <p>Notice that there is no additional code needed.</p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial8</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial10</next>
+</fiddle>

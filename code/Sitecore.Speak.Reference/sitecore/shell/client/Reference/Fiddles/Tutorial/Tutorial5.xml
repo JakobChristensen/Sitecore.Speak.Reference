@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+
+  var text = control.GetString("Text");
+
+  control.SetAttribute("data-sc-text", text);
+}
+<p @control.HtmlAttributes>
+  @text
+</p>]]>
+  </view>
+  <code>
+    <![CDATA[define(["sitecore"], function (Sitecore) {
+  Sitecore.Factories.createBaseComponent({
+    name: "Tutorial5",
+    base: "ControlBase",
+    selector: "p[data-sc-component='Tutorial5']",
+    attributes: [
+      { name: "Text", value: "$el.data:sc-text" }
+    ]
+  });
+});]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>JavaScript</h3>
+    <p>SPEAK Components often offer rich client-side functionality, and in order to do so include a JavaScript file 
+    that exposes the data model of the component to other parts of the page.</p>
+    <p>The data model can be defined in a number of ways.</p>
+    <p>The simplest way is the SPEAK Base Component which declares the component using the 
+    <code>Sitecore.Factories.createBaseComponent</code> function.
+    </p>
+    <h4>Code Explanation</h4>
+    <p>The define() function uses RequireJS to ensure that the SPEAK Sitecore API is loaded.</p>
+    <p>The <code>Sitecore.Factories.createBaseComponent</code> declares the component to the SPEAK Core.</p>
+    <p>The <code>name</code> property defines the name of the component.</p>
+    <p>The <code>base</code> property defines the base class to inherit from.</p>
+    <p>The <code>selector</code> property defines the jQuery selector used to find all instances of the component on the page. 
+    The <code>data-sc-component</code> is automatically outputted by the <code>@control.HtmlAttributes</code> call in the MVC View.</p>
+    <p>The <code>attributes</code> array defines the properties on the component model.</p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial4</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial6</next>
+</fiddle>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+<p>
+  Hello World
+</p>]]>
+  </view>
+  <code><![CDATA[]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Text Text="Welcome" TextType="Title"/>
+  <Fiddle />
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Layout renderings</h3>
+    <p>The Layout Renderings pane third to the top contains the renderings that the Sitecore Rendering Engine uses the generate the output.</p>
+    <p>When the SPEAK Fiddle generates the output, it transforms the contents of this pane into a Renderings field which Sitecore then renders.</p>
+    <p>It is possible to use either the names of renderings (as shown in this sample) or the raw Sitecore format.</p>
+    <p>If you use the name of a rendering, any attributes are added to the Parameters property of the rendering.</p>
+    <p>The special "Fiddle" rendering identifies the current component in this SPEAK Fiddle.</p>
+    <h4>Try this</h4>
+    <p>Try pasting this following component into the Layout Components pane after the Fiddle component.</p>
+    <pre>&lt;Button Text="Perfect" Type="Primary" /></pre>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial1</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial3</next>
+</fiddle>

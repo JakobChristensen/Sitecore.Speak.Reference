@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+<p>
+</p>]]>
+  </view>
+  <code><![CDATA[]]></code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle />
+</Layout>
+]]>
+  </renderings>
+  <text />
+</fiddle>

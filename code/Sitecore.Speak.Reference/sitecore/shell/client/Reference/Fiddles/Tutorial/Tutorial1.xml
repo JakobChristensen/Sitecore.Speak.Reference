@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+<p>
+  Hello World
+</p>]]>
+  </view>
+  <code><![CDATA[]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle />
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Welcome</h3>
+    <p>SPEAK is a Rapid Application Development framework for Sitecore focusing on UX.</p>
+    <p>You build SPEAK pages using standard Sitecore renderings. Such renderings are called SPEAK components.</p>
+    <p>A SPEAK component consists of a rendering item, a rendering parameters template, an MVC view and optionally a JavaScript file and a stylesheet file.<p>
+    <p>The SPEAK Fiddle allows you to play with a SPEAK component. You have the ability to edit the MVC View, the JavaScript/TypeScript file, the layout definition and data items.<p>
+    <h4>Hello World</h4>
+    <p>This is the basic Hello World SPEAK component. It contains no JavaScript and just outputs "Hello World" in the MVC view.
+    <p>Click the <code>Run</code> button or press <code>Ctrl</code>+<code>Enter</code> button to generate the output.</p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial2</next>
+</fiddle>

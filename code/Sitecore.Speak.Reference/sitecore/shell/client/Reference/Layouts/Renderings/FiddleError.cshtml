@@ -1,0 +1,14 @@
+﻿@using Sitecore.Web
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var text = WebUtil.GetSessionString("SC_FIDDLE_ERROR");
+}            
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>An error occurred while rendering the component</h3>
+      <label>Error message:</label>
+      <p>@Html.Raw(text)</p>
+    </div>
+  </div>
+</div>

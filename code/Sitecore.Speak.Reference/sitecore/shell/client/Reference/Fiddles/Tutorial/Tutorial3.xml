@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+  var text = control.GetString("Text");
+}
+<p>
+  @text
+</p>]]>
+  </view>
+  <code><![CDATA[]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Passing Parameters"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Parameters</h3>
+    <p>You can pass parameters from the Layout Rendering pane to the Component MVC View.</p>
+    <p>In the the Layout Rendering pane, the Fiddle rendering now has a Text parameter.</p>
+    <p>The Componenent MVC View gets this parameter by first instantiating a control. This wraps the current component in an object that  
+    allows access to rendering parameters and controls this Html output.</p>
+    <h4>Try this</h4>
+    <p>Change the value of the <code>Text</code> parameter in Layout Renderings pane to <code>Perfect</code></p>
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial2</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial4</next>
+</fiddle>

@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {0DC900C0-AEE3-4031-B151-AA9D328EED8A}
+database: core
+path: /sitecore/client/Reference/Component/PageSettings/Layouts
+parent: {0080F99D-7B5D-4056-8015-4BECB861A32F}
+name: Layouts
+master: {00000000-0000-0000-0000-000000000000}
+template: {A87A00B1-E6DB-45AB-8B54-636FEC3B5523}
+templatekey: Folder
+
+----version----
+language: en
+version: 1
+revision: 4f45b67e-8cd7-4ddd-88bf-fff1468c60d0
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20140731T113004
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+4f45b67e-8cd7-4ddd-88bf-fff1468c60d0
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140731T113008:635424030082081647
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

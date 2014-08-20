@@ -1,0 +1,56 @@
+﻿body {
+  overflow-y: scroll;
+}
+
+textarea {
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  max-height: none;
+  line-height: 14px;
+  resize: vertical; 
+
+  &.form-control {
+    font-size: 12px;
+  }
+}
+
+iframe {
+  width: 100%;
+  padding: 0;
+  margin: 0 0 0 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#fiddleForm {
+  margin: 70px 0 0 0;
+}
+
+#outputpanel {
+  position: absolute;
+  z-index: 1;
+  background: url(/sitecore/shell/client/Reference/Assets/Images/Spinner.gif) center center no-repeat;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 999px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}

@@ -1,0 +1,233 @@
+﻿@using Sitecore.Fiddles
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@functions
+{
+  string Flag(bool condition, string ifTrue, string ifFalse = "")
+  {
+    return condition ? ifTrue : ifFalse;
+  }
+}
+@{
+  var rendering = this.InitializeControl("fiddle");
+  var htmlAttributes = rendering.HtmlAttributes;
+
+  var fiddle = FiddleManager.LoadFiddleFromStorage();
+
+  var span = string.IsNullOrEmpty(fiddle.Text) ? "col-md-12" : "col-md-10";
+
+  var codeCollapsed = !string.IsNullOrWhiteSpace(fiddle.Code) || string.IsNullOrWhiteSpace(fiddle.View) ? "in" : string.Empty;
+  var itemsCollapsed = !string.IsNullOrWhiteSpace(fiddle.Items) ? "in" : string.Empty;
+  var isJavaScript = fiddle.CodeLanguage != "ts";
+
+  var templates = FiddleManager.LoadTemplates();
+  var components = Model.PageItem.Database.SelectItems("fast://*[@@templateid='{99F8905D-4A87-4EB8-9F8B-A9BEBFB3ADD6}']").OrderBy(i => i.Name).ToList();
+}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#NavBar1Collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/sitecore/client/Reference">SPEAK Reference</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="NavBar1Collapse">
+      <div class="nav navbar-nav">
+        <button id="runButton" type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-play"></span> Run</button>
+        <button id="saveButton" type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-save"></span> Save</button>
+        <button id="forkButton" type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-share"></span> Fork</button>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Files <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/sitecore/client/Reference/Fiddle">New</a></li>
+            <li class="divider"></li>
+            <li><a href="@fiddle.FileName" target="_new" download="Fiddle_@fiddle.FiddleId">Download</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#uploadModal">Upload</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Templates <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            @foreach (var template in templates)
+            {
+              <li><a href="/sitecore/client/Reference/Fiddle/FiddleCreate?a=template&id=@template">@template</a></li>
+            }
+          </ul>
+        </li>
+        <li><a href="/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial1.xml">Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div @htmlAttributes data-sc-presenter="scKoPresenter">
+  <form style="height:100%" id="fiddleForm" method="post" action="/sitecore/client/Reference/Fiddle/RunFiddle" target="output" enctype="multipart/form-data">
+    <input type="hidden" name="fiddleid" id="fiddleid" value="@fiddle.FiddleId" />
+    <input type="hidden" name="action" id="action" />
+    <input type="hidden" name="readonly" id="readonly" value="@fiddle.ReadOnly.ToString()" />
+
+    <div class="container-fluid">
+      <div class="row">
+        @if (!string.IsNullOrEmpty(fiddle.Text))
+        {
+          <div class="col-md-2">
+            @Html.Raw(fiddle.Text)
+
+            <p>
+              @if (!string.IsNullOrEmpty(fiddle.Previous))
+              {
+                <a href="@Html.Raw(fiddle.Previous)" class="btn">Previous</a>
+              }
+              @if (!string.IsNullOrEmpty(fiddle.Next))
+              {
+                <a href="@Html.Raw(fiddle.Next)" class="btn btn-primary">Next</a>
+              }
+            </p>
+          </div>
+        }
+
+        <div class="@span">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="panel-group" id="accordion">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#viewpanel">Component MVC View</a>
+                      </h4>
+                    </div>
+                    <div id="viewpanel" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                        <textarea name="view" id="view" rows="8" class="form-control" wrap="off">@fiddle.View</textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#codepanel">Component Code</a>
+
+                        <span class="btn-group btn-group-xs pull-right" data-toggle="buttons">
+                          <label class="btn btn-default @this.Flag(isJavaScript, "active")">
+                            <input type="radio" name="codelanguage" id="codelanguage1" value="js" @this.Flag(isJavaScript, "checked")> Javascript
+                          </label>
+                          <label class="btn btn-default @this.Flag(!isJavaScript, "active")">
+                            <input type="radio" name="codelanguage" id="codelanguage2" value="ts" @this.Flag(!isJavaScript, "checked")> TypeScript
+                          </label>
+                        </span>
+
+                      </h4>
+                    </div>
+
+                    <div id="codepanel" class="panel-collapse collapse @codeCollapsed">
+                      <div class="panel-body">
+                        <textarea name="code" id="code" class="form-control" rows="8" wrap="off">@fiddle.Code</textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#layoutpanel">Layout Renderings</a>
+                      </h4>
+                    </div>
+                    <div id="layoutpanel" class="panel-collapse collapse in">
+                      <div class="panel-body">
+                        <textarea name="renderings" id="renderings" class="form-control" rows="8" wrap="off">@fiddle.Renderings</textarea>
+                      </div>
+                      <div class="panel-body">
+                        <input type="text" class="form-control" id="codehelp" placeholder="Enter a component name to get help for" autocomplete="off" />
+                        <div id="codehelptext"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#itemspanel">Items</a>
+                      </h4>
+                    </div>
+                    <div id="itemspanel" class="panel-collapse collapse @itemsCollapsed">
+                      <div class="panel-body">
+                        <textarea name="items" id="items" class="form-control" rows="8" wrap="off">@fiddle.Items</textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      Output
+                    </h4>
+                  </div>
+                  <div id="itemspanel" class="panel-collapse">
+                    <div class="panel-body">
+                      <div id="outputpanel" style="display:none"> </div>
+                      <iframe name="output" id="output" src="/sitecore/client/Reference/Fiddle/FiddleEmpty"></iframe>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <form id="uploadForm" method="post" role="form" action="/sitecore/client/Reference/Fiddle/FiddleCreate" enctype="multipart/form-data">
+    <div id="uploadModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Upload Fiddle</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="uploadFile">Select file to upload:</label>
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <span id="uploadFile" class="btn btn-primary btn-file">
+                    Browse… <input id="uploadInput" name="uploadInput" type="file">
+                  </span>
+                </span>
+                <input id="uploadFileName" type="text" class="form-control" readonly="">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="uploadButton" type="submit" class="btn btn-primary">Upload</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript" language="javascript">
+  var typeaheaddata = [ 
+  @foreach (var component in components)
+  {
+    @Html.Raw("'" + component.Name + "',");
+  }
+  ];
+</script>

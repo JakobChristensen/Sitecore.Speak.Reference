@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+  var text = control.GetString("Text");
+}
+<p @control.HtmlAttributes>
+  @text
+</p>]]>
+  </view>
+  <code><![CDATA[]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Html Attributes</h3>
+    <p>SPEAK Components normally output a set of system attributes on the main tag.</p>
+    <p>These attributes help the SPEAK Core identify the component and create the data model for the page.</p>
+    <p>If the component includes a JavaScript file or a stylesheet, these files are included as well.</p>
+    <p>All SPEAK specific attributes are prefixed with <code>data-sc-</code>.</p>    
+    <p>To output the system attributes, add <code>@control.HtmlAttributes</code> on the main component tag.</p>    
+    <h4>Try this</h4>
+    <p>If you are using Chrome, try inspecting the "Text" element in the Output pane.</p>
+    <p>You will see the <code>data-sc-id</code>, <code>data-sc-component</code>, 
+    <code>data-sc-path</code>, <code>data-sc-require</code> system attributes.
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial3</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial5</next>
+</fiddle>

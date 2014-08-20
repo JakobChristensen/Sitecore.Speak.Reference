@@ -1,0 +1,55 @@
+----item----
+version: 1
+id: {B8399DED-3948-4C5B-9F1B-67784B753DF2}
+database: core
+path: /sitecore/client/Reference/Fiddle/RunFiddle
+parent: {2EB0C521-D71B-4396-88DB-AC0F8DA3A1A6}
+name: RunFiddle
+master: {00000000-0000-0000-0000-000000000000}
+template: {B11AFCCD-C286-4384-B694-4465D6C605DE}
+templatekey: Speak-DashboardPage
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 226
+
+<r>
+  <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{DF855FF6-6F27-491B-BDFE-D43FD839E5A7}">
+    <r id="{B9A9194C-FD1C-4659-ACD9-FE0799C05725}" ph="Page.Body" uid="{F09BC561-3225-4D8E-AD53-E1D150E4E1F9}" />
+  </d>
+</r>
+----version----
+language: en
+version: 1
+revision: 4e00894f-91c3-4731-8faa-1ee445e5f931
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20131209T202541
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+4e00894f-91c3-4731-8faa-1ee445e5f931
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20140805T114452:635428358924642423
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

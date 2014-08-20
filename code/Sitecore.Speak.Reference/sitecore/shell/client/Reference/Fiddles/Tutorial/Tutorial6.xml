@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fiddle>
+  <view>
+    <![CDATA[@using Sitecore.Mvc
+@model Sitecore.Mvc.Presentation.RenderingModel
+@{
+  var control = this.InitializeControl();
+  
+  var text = control.GetString("Text");
+  var color = control.GetString("Color");
+  
+  control.SetAttribute("data-sc-text", text);
+  control.SetAttribute("data-sc-color", color);
+}
+<p @control.HtmlAttributes>
+  @text
+</p>]]>
+  </view>
+  <code>
+    <![CDATA[define(["sitecore"], function (Sitecore) {
+  Sitecore.Factories.createBaseComponent({
+    name: "Tutorial6",
+    base: "ControlBase",
+    selector: "p[data-sc-component='Tutorial6']",
+    attributes: [
+      { name: "Text", value: "$el.data:sc-text" },
+      { name: "Color", value: "$el.data:sc-color" }
+    ],
+    initialize: function() {
+      this._super();
+      this.$el.css("color", this.model.get("Color"));
+    }
+  });
+});]]>
+  </code>
+  <renderings>
+    <![CDATA[<Layout>
+  <PageCode />
+  <Fiddle Text="Text" Color="red"/>
+</Layout>
+]]>
+  </renderings>
+  <text>
+    <![CDATA[
+    <h3>Initialization</h3>
+    <p>When a new instance of a component is created by the SPEAK Core, the <code>initialize()</code> function is called. 
+    This allows you to do additional initialization of the component.</p>
+    <p>
+    <p>In this example, the <code>Color</code> property is assigned to the <code>data-sc-color</code> attribute by the MVC view.
+    and this attribute is used to set the the <code>Color</code> property in the <code>attributes</code> array.</p>
+    <p>In the <code>initialize()</code> function, the <code>Color</code> attribute is applied to the Html element.
+    ]]>
+  </text>
+  <readonly>true</readonly>
+  <previous>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial5</previous>
+  <next>/sitecore/client/Reference/Fiddle?f=Tutorial/Tutorial7</next>
+</fiddle>

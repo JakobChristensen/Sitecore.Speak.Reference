@@ -1,0 +1,118 @@
+<project site="Sitecore.Speak.7.5.rev140808" format="Zip Package">
+  <Metadata>
+    <metadata>
+      <PackageName>Sitecore SPEAK Reference and Fiddle</PackageName>
+      <Author>Jakob Christensen</Author>
+      <Version>1.0.0</Version>
+      <Revision />
+      <License />
+      <Comment>Sitecore SPEAK Reference and Fiddle.
+
+This tech demo implements a dynamic web site for SPEAK Components. 
+
+The web site consists of two parts: a component reference section and a SPEAK Fiddle sandbox.
+
+To open the web site, navigate to /sitecore/client/Reference
+
+*** IMPORTANT ***
+Since the SPEAK Fiddle is posting Html and JavaScript to the server, you may encounter a ASP.NET validation error. 
+
+In that case set the attribute: requestValidationMode="2.0" to the httpRuntime element in the web.config.
+</Comment>
+      <Attributes />
+      <Readme />
+      <Publisher>Sitecore A/S</Publisher>
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xitems>
+      <Entries>
+        <x-item>/core/sitecore/client/Reference/{711E2B6B-F3BA-4F7D-9AA2-C653B180D480}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Component/{9870DFA9-F35C-416F-9991-185027446AE5}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/{2EB0C521-D71B-4396-88DB-AC0F8DA3A1A6}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/PageSettings/{3961AACA-E6CD-45FF-ACBB-259B0EFF5F85}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Component/PageSettings/{0080F99D-7B5D-4056-8015-4BECB861A32F}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Component/PageSettings/Layouts/{0DC900C0-AEE3-4031-B151-AA9D328EED8A}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Component/PageSettings/ReferenceCss/{72C678A7-DBA1-4A23-8F9B-AA1C155EFEAB}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Component/PageSettings/Layouts/Renderings/{A5A36E87-C597-4088-8CE5-71E727803C59}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Component/PageSettings/Layouts/Renderings/ReferenceComponent/{BC8C7174-9BD1-479A-BB17-C94DD7ECF914}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/FiddleCreate/{20DC2E54-511A-408D-9888-657E7BE42079}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/FiddleEmpty/{7D301FB4-2753-48D2-82F3-B9760D934061}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/FiddleError/{EEB3D55E-023C-46F3-B7B3-05CAFB99AB31}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/{4B6117FA-C77D-445B-B519-94866C687427}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/RunFiddle/{B8399DED-3948-4C5B-9F1B-67784B753DF2}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/FiddleCss/{3F1A3981-A8F1-41E9-8B8C-B2F2ED6A68EF}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Items/{4110CF0F-7457-4A9D-A072-06AD92A5DB05}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/{7BC56D4E-7AE9-4DEA-9353-BF1E86E82557}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Layouts/{1822B6AF-637D-4223-81A7-868F3655CBA7}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/{78C5734F-EB0D-4C82-B39A-8807B57DC3CD}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Layouts/Fiddle-Layout/{61AE21EC-DD1C-4585-ABA2-6CB8B0531E70}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Layouts/FiddleRun-Layout/{DF855FF6-6F27-491B-BDFE-D43FD839E5A7}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/Fiddle/{572D72A1-F6EB-4A24-97CA-B1A10FCE12CA}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/FiddleCreate/{79720069-8222-4B28-81C1-67789B638569}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/FiddleEmpty/{88D54278-6014-4B06-A383-BA406D198DDD}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/FiddleError/{C275A0EF-06F3-4664-9954-81388DE2EC53}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/FiddleRun/{B9A9194C-FD1C-4659-ACD9-FE0799C05725}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/Fiddle/Fiddle-Parameters/{AB4EB83D-6373-4177-9FAD-98F27C852A6E}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/Fiddle/PageSettings/Layouts/Renderings/Fiddle/Fiddle-Parameters/__Standard Values/{BDCD0621-0108-4658-8D95-5A9277235886}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/PageSettings/Layouts/{5D88EB9B-3DDB-4478-BA10-C9AB365DB7A8}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/PageSettings/ReferenceCss/{8AACF8B7-DE99-4DBE-A2FF-09172D005CCE}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/PageSettings/Layouts/Renderings/{75CE1385-C168-40DE-AE1B-C7A9ECEBD8CF}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Reference/PageSettings/Layouts/Renderings/ReferenceComponentList/{E503973A-6D7C-4C2D-9783-604EF43BAEDD}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Items</Name>
+    </xitems>
+    <xfiles>
+      <Entries>
+        <x-item>/bin/Sitecore.Speak.Reference.dll</x-item>
+        <x-item>/sitecore/shell/client/Reference</x-item>
+      </Entries>
+      <Converter>
+        <FileToEntryConverter>
+          <Root />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </FileToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Files</Name>
+    </xfiles>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
